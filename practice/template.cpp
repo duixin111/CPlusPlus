@@ -3,6 +3,42 @@
 
 using namespace std;
 
+//template<typename S,typename T>
+//
+//S add(S left, T right)
+//{
+//	return left + right;
+//}
+//
+//int main()
+//{
+//	int m = add(1, 2);
+//
+//	return 0;
+//}
+//template<class T>
+//int Find(T array[], size_t size, const T& data)
+//{
+//	for (size_t i = 0; i < size; i++)
+//	{
+//		if (array[i] == data)
+//			return i;
+//	}
+//
+//	return -1;
+//}
+//
+//int main()
+//{
+//	//int array[] = { 1,3,2,5,4,6,9,8 };
+//	char array[] = "mjihbsf";
+//	int size = sizeof(array) / sizeof(array[0]);
+//	int index = Find(array, size, 'l');
+//
+//	return index;
+//}
+
+
 template<class T>
 class SeqList
 {
