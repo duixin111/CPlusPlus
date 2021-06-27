@@ -1,0 +1,282 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+// 初始化
+void TestString1()
+{
+	string s1;
+	const char* p = "hello world!";
+	string s(p);
+	string s2("hello world!");
+	string s3(10, '$');
+	string s4(s3);
+	string s5(p, p + 5);
+
+	cout << s2 << endl;
+
+	for (size_t i = 0; i < s3.size(); i++)
+		cout << s3[i];
+	cout << endl;
+	for (auto e : s4)
+		cout << e;
+	cout << endl;
+}
+
+
+// 迭代器
+void TestString2()
+{
+	string s1("hello world!");
+	string::iterator it = s1.begin();
+	while (it != s1.end())
+	{
+		cout << *it;
+		it++;
+	}
+	cout << endl;
+
+	string::reverse_iterator rit = s1.rbegin();
+	while (rit != s1.rend())
+	{
+		cout << *rit;
+		rit++;
+	}
+	cout << endl;
+
+	reverse(s1.begin(), s1.end());
+	cout << s1 << endl;
+}
+
+
+// 容量
+void TestString3()
+{
+	string s("hello world");
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	if (s.empty())
+		cout << "空" << endl;
+	else
+		cout << "非空" << endl;
+
+	s.clear();
+
+	if (s.empty())
+		cout << "空" << endl;
+	else
+		cout << "非空" << endl;
+}
+
+
+// resize
+void TestString4()
+{
+	string s("hello");
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.resize(10, '!');
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	// 开始扩容  按1.5capacity扩容
+	s.resize(20, '#');
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(50, '$');
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	// 减少元素个数，但未修改容量大小
+	s.resize(40);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(30);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(20);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(16);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(10);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.resize(5);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+}
+void TestString5()
+{
+	string s("hello world!");
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	cout << s << endl;
+
+	s.reserve(10);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(20);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(50);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(100);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(70);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(50);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(20);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	// 当要设定的容量小于15时才修改capacity
+	s.reserve(15);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(10);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(5);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	/* 28个字节 char* str; int size; int capacity  + 预留16字节 其中一字节存储'\0'*/
+	cout << sizeof(string) << endl;  // 28个字节
+}
+
+// 字符串相加
+void TestString6()
+{
+	string s;
+	s += "hello";
+	s += " ";
+	string s2("world");
+	s += s2;
+
+	s = s.append(3, '!');
+
+	s = s.append(s, 0, s.length());
+
+	cout << s << endl;
+}
+
+// 插入
+void TestString7()
+{
+	string s("hello");
+	s.insert(s.length(), "world!");
+
+	s.insert(5, 1, ' ');
+	cout << s << endl;
+}
+
+// 删除
+void TestString8()
+{
+	string s("hello world!");
+	s.erase(0, 5);
+	s.erase(s.begin());
+	s.erase(s.begin(), s.end());
+	cout << s << endl;
+}
+
+// atoi
+void TestString9()
+{
+	string s("-123.12");
+
+	int value = atoi(s.c_str());
+	cout << s << endl;
+	printf("%d\n", value);
+}
+
+// 获得后缀(分割)
+void TestString10()
+{
+	string s1("test.cpp");
+	string postFix = s1.substr(s1.find('.') + 1);
+	cout << postFix << endl;
+
+	string s2("c:\\user\\duixin\\test.cpp");
+
+	string name = s2.substr(s2.rfind("\\") + 1, s2.rfind('.') - s2.rfind("\\") - 1);
+
+	cout << name << endl;
+}
+
+// 扩容机制（1.5capacity）前面已经验证过
+void TestString11()
+{}
+
+void TestString12()
+{
+	string s;
+	// cin >> s;   //majiahao123正常   ma jia hao 只会获得ma
+	// getline(cin, s);
+
+	cout << s << endl;
+}
+
+// 比较 > 相当于 strcmp()
+void TestString13()
+{
+	string s1("hello!");
+	string s2("hello");
+	if (s1 > s2)
+		cout << "s1 > s2" << endl;
+	else
+		cout << "s1 <= s2" << endl;
+}
+
+
+int main()
+{
+	// TestString1();
+	// TestString2();
+	// TestString3();
+	// TestString4();
+	// TestString5();
+	// TestString6();
+	// TestString7();
+	// TestString8();
+	// TestString9();
+	// TestString10();
+	// TestString11();
+	// TestString12();
+	TestString13();
+
+	return 0;
+}
