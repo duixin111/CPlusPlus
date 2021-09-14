@@ -12,6 +12,7 @@ public:
             prev = cur;
             cur = value;
         }
+        
         return value;
     }
 };
